@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ title }} - ComicCraft
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="page-shell wide">
+
+    <header class="result-header">
+
+        <div>
+
+            <div class="brand">
+                ✦ COMICCRAFT
+            </div>
+
+            <h1>
+                {{ title }}
+            </h1>
+
+            <p>
+                Your AI-generated comic is ready.
+            </p>
+
+        </div>
+
+
+        <div class="actions">
+
+            <a
+                class="secondary-button"
+                href="/"
+            >
+                ← New Comic
+            </a>
+
+            <a
+                class="primary-button inline"
+                href="{{ pdf_url|replace('/static/exports/', '/download/') }}"
+            >
+                ⬇ Download PDF
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <section class="comic-grid">
+
+        {% for panel in layout %}
+
+        <article class="comic-panel">
+
+            <div class="panel-label">
+                PANEL {{ panel.panel_number }}
+            </div>
+
+            <h2>
+                {{ panel.title }}
+            </h2>
+
+
+            <img
+                src="{{ panel.image_path }}"
+                alt="Comic panel {{ panel.panel_number }}"
+            >
+
+
+            <p class="scene">
+                {{ panel.scene_description }}
+            </p>
+
+
+            {% if panel.caption %}
+
+            <div class="speech caption">
+
+                <strong>
+                    Caption:
+                </strong>
+
+                {{ panel.caption }}
+
+            </div>
+
+            {% endif %}
+
+
+            {% if panel.narration %}
+
+            <div class="narration">
+
+                <strong>
+                    Narration:
+                </strong>
+
+                {{ panel.narration }}
+
+            </div>
+
+            {% endif %}
+
+
+            {% if panel.dialogue %}
+
+            <div class="speech">
+
+                <strong>
+                    Dialogue:
+                </strong>
+
+                {{ panel.dialogue }}
+
+            </div>
+
+            {% endif %}
+
+
+            <details>
+
+                <summary>
+                    Image prompt
+                </summary>
+
+                <p>
+                    {{ panel.image_prompt }}
+                </p>
+
+            </details>
+
+        </article>
+
+        {% endfor %}
+
+    </section>
+
+
+    <footer class="bottom-actions">
+
+        <a
+            class="primary-button inline"
+            href="{{ pdf_url|replace('/static/exports/', '/download/') }}"
+        >
+            ⬇ Download Your Comic as PDF
+        </a>
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>

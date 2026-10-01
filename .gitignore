@@ -16,3 +16,4 @@ static/exports/*.pdf
 .DS_Store.venv_problem/
 
 .venv_problem/
+.venv_problem_backup/
